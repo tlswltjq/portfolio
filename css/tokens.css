@@ -1,0 +1,70 @@
+/* ══════════════════════════════════════════════════════════════════
+   tokens.css — Industry 도면(blueprint) 디자인 시스템의 토큰
+   시안(신지섭 포트폴리오 사이트.dc.html)이 참조하는 CSS 변수를
+   그대로 정의합니다. 색·타입·간격을 바꿀 일이 생기면 이 파일만 고칩니다.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── 표면과 글자 ─────────────────────────────────────────────── */
+  --color-bg: #f2f2f3;          /* 종이(페이지) 바닥 */
+  --color-surface: #e9e9ea;     /* 한 단 들어간 면 — 코드칩·해칭 바탕 */
+  --color-text: #1d1f20;
+  --color-divider: color-mix(in srgb, #1d1f20 16%, transparent);
+
+  /* 중립 램프 — OKLCH 한 명도 축에서 뽑아, 단계가 같으면 밝기도 같습니다. */
+  --color-neutral-100: #f5f5f8;
+  --color-neutral-200: #e7e7ea;
+  --color-neutral-300: #d4d4d7;
+  --color-neutral-400: #b7b7ba;
+  --color-neutral-500: #98989b;
+  --color-neutral-600: #7a7a7d;
+  --color-neutral-700: #5d5d60;
+  --color-neutral-800: #424244;
+  --color-neutral-900: #2b2b2d;
+
+  /* 강조 램프 — 청사진 잉크 계열 */
+  --color-accent: #5980a6;
+  --color-accent-100: #eef6ff;
+  --color-accent-200: #d6ebff;
+  --color-accent-300: #b5d9fd;
+  --color-accent-400: #94bce3;
+  --color-accent-500: #749dc4;
+  --color-accent-600: #597ea3;
+  --color-accent-700: #416180;
+  --color-accent-800: #2c455d;
+  --color-accent-900: #1d2d3d;
+
+  /* ─── 타이포그래피 ────────────────────────────────────────────── */
+  /* 라틴은 Barlow, 한글은 IBM Plex Sans KR 로 떨어집니다. 시안이 쓰는
+     조합이라 그대로 둡니다. */
+  --font-heading: "Barlow Condensed", "IBM Plex Sans KR", system-ui, sans-serif;
+  --font-body: "Barlow", "IBM Plex Sans KR", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading-weight: 600;
+
+  /* ─── 간격 ────────────────────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 22px;
+  --space-6: 30px;
+  --space-8: 44px;
+
+  /* 아트보드 좌우 여백 — 시안의 1180px 카드에 44px 패딩 */
+  --page-max: 1180px;
+  --page-pad: 44px;
+
+  /* 섹션 사이 수직 리듬 */
+  --section-gap: 88px;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2b2b2d 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2b2b2d 16%, transparent);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --page-pad: 20px;
+    --section-gap: 52px;
+  }
+}

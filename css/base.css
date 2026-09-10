@@ -1,0 +1,179 @@
+/* ══════════════════════════════════════════════════════════════════
+   base.css — 리셋 · 요소 타이포그래피 · 레이아웃 뼈대 · 유틸리티
+   ══════════════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* [hidden] 은 기본이 display:none 이지만, 아래에서 .card 류에 flex/grid 를
+   주면 그 쪽이 이깁니다. 필터와 아코디언이 hidden 만으로 동작하므로
+   여기서 확실히 눌러 둡니다. */
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  /* 한글은 기본값이면 글자 단위로 잘려 “원인/을 찾아” 처럼 어절이 끊깁니다.
+     keep-all 로 어절을 붙여 두고, 긴 URL 같은 것만 break-word 로 풀어 줍니다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+
+  /* 내용이 짧은 페이지에서도 푸터가 바닥에 붙게 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > main { flex: 1 0 auto; }
+body > .site-footer { flex: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(38px, 5.2vw, 64px); letter-spacing: -0.02em; }
+h2 { font-size: clamp(24px, 3vw, 30px); }
+h3 { font-size: clamp(22px, 2.4vw, 26px); }
+h4 { font-size: 21px; }
+h5 { font-size: 17px; }
+
+/* h6 는 시안 전체에서 “섹션 소제목 라벨” 역할입니다. */
+h6 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-700);
+}
+
+p { margin: 0 0 var(--space-3); }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--color-accent); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent-700); }
+
+ul, ol { margin: 0; padding-left: 16px; }
+li { text-wrap: pretty; }
+
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  padding: var(--space-2) 2px 0;
+  font-size: 11px;
+  color: var(--color-neutral-600);
+}
+
+b, strong { font-weight: 600; }
+
+code {
+  font: 400 0.88em var(--font-mono);
+  background: var(--color-surface);
+  padding: 1px 5px;
+}
+
+button { font: inherit; color: inherit; }
+
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+/* 건너뛰기 링크 — 키보드 사용자가 내비게이션을 지나칠 수 있게 */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--color-accent-900);
+  color: #f2f2f3;
+  font: 500 13px var(--font-body);
+  text-decoration: none;
+}
+.skip-link:focus { left: 0; color: #f2f2f3; }
+
+/* ─── 레이아웃 ────────────────────────────────────────────────────── */
+.container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding-inline: var(--page-pad);
+}
+
+/* body 가 flex 컨테이너이므로, .container 가 body 의 직계 자식이면
+   (이력서의 도구 띠) margin:0 auto 때문에 늘어나지 않고 내용 너비로
+   줄어듭니다. 폭을 명시해 원래대로 돌려놓습니다. */
+body > .container { width: 100%; }
+
+/* 본문 흐름 — 섹션마다 위 간격을 줍니다. */
+.section { padding-top: var(--section-gap); }
+.section--tight { padding-top: calc(var(--section-gap) * 0.7); }
+
+/* 섹션 머리 — 굵은 괘선 위의 제목. 시안에서 반복되는 패턴입니다. */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-text);
+}
+.section-head--gap { margin-bottom: var(--space-6); }
+.section-head h2 { margin: 0; }
+
+/* ─── 유틸리티 ────────────────────────────────────────────────────── */
+
+/* 도면 라벨 — 모노 + 자간. 시안이 가장 자주 쓰는 텍스트 스타일입니다. */
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 11.5px;
+  color: var(--color-neutral-600);
+}
+.mono--sm { font-size: 10.5px; }
+
+.kicker {
+  font: 400 10.5px/1 var(--font-mono);
+  letter-spacing: 0.2em;
+  color: var(--color-accent-700);
+}
+
+/* 리드 문장 — 히어로와 페이지 머리의 굵은 한 줄 */
+.lead {
+  font: 500 clamp(19px, 2.1vw, 25px)/1.5 var(--font-body);
+  margin: 0 0 var(--space-5);
+  text-wrap: pretty;
+}
+
+.body-text {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--color-neutral-800);
+  text-wrap: pretty;
+}
+
+.muted { color: var(--color-neutral-700); }
+.note {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: var(--color-neutral-600);
+}
+
+/* 수치 강조 — “8 → 0건” 같은 결과값 */
+.metric {
+  font: 600 27px/1 var(--font-heading);
+  color: var(--color-accent-800);
+}
+.hl { color: var(--color-accent-800); font-weight: 600; }
+
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · 신지섭</title>
+<meta name="description" content="프로젝트, 채용 또는 협업에 관한 문의 — wltjq1203@icloud.com">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f2f2f3'/%3E%3Crect x='7' y='7' width='18' height='18' fill='none' stroke='%231d1f20' stroke-width='1.6'/%3E%3Cpath d='M3 3h6M3 3v6M29 3h-6M29 3v6M3 29h6M3 29v-6M29 29h-6M29 29v-6' stroke='%235980a6' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="nav-brand" href="index.html">신지섭<span>Backend Developer</span></a>
+
+    <nav class="nav-links" aria-label="주요 메뉴">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+      <a class="nav-icon" href="https://github.com/tlswltjq" aria-label="GitHub" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 5-2 5-5.5a5 5 0 0 0-1.5-3.5 4 4 0 0 0-.1-3S15.5 2 13 3.5a13 13 0 0 0-6 0C4.5 2 3.6 3.5 3.6 3.5a4 4 0 0 0-.1 3A5 5 0 0 0 2 10c0 3.5 2 5.5 5 5.5A4.8 4.8 0 0 0 6 19v4"/></svg>
+      </a>
+    </nav>
+
+    <button class="btn btn-secondary btn-icon nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav-drawer">
+      <svg data-icon="open" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg data-icon="close" hidden width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="nav-drawer" id="nav-drawer" hidden>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+      <li><a href="https://github.com/tlswltjq" target="_blank" rel="noopener">GitHub<span class="mono mono--sm">↗</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="container contact">
+
+    <div>
+      <h1>Contact</h1>
+      <p class="contact-intro">프로젝트, 채용 또는 협업에 관한 문의가 있다면 연락해주세요. 보통 하루 안에 답장합니다.</p>
+      <table class="table">
+        <tbody>
+          <tr><td>Email</td><td><a href="mailto:wltjq1203@icloud.com">wltjq1203@icloud.com</a></td></tr>
+          <tr><td>GitHub</td><td><a href="https://github.com/tlswltjq" target="_blank" rel="noopener">github.com/tlswltjq</a></td></tr>
+          <tr><td>Resume</td><td><a href="assets/resume-jiseop-shin.pdf" download>최신 이력서 PDF</a></td></tr>
+        </tbody>
+      </table>
+      <a class="btn btn-secondary" href="mailto:wltjq1203@icloud.com">이메일로 문의하기</a>
+    </div>
+
+    <!-- 서버가 없는 정적 사이트이므로, 검증을 통과하면 mailto: 로 메일 앱을 엽니다. -->
+    <form class="blueprint contact-form" data-contact-form data-mailto="wltjq1203@icloud.com" novalidate>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+
+      <div class="field">
+        <label for="c-name">이름</label>
+        <input class="input" id="c-name" name="name" type="text" placeholder="홍길동" autocomplete="name" aria-describedby="c-name-error">
+        <p class="field-error" id="c-name-error" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="c-mail">이메일</label>
+        <input class="input" id="c-mail" name="email" type="email" placeholder="name@company.com" autocomplete="email" aria-describedby="c-mail-error">
+        <p class="field-error" id="c-mail-error" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="c-msg">내용</label>
+        <textarea class="input" id="c-msg" name="message" rows="7" placeholder="문의 내용을 적어주세요." aria-describedby="c-msg-error"></textarea>
+        <p class="field-error" id="c-msg-error" role="alert"></p>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit">문의 보내기</button>
+      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      <p class="note">보내신 내용은 위 이메일로 전달됩니다.</p>
+    </form>
+
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <div class="footer-brand">신지섭</div>
+      <div>BACKEND DEVELOPER</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/tlswltjq" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:wltjq1203@icloud.com">Email</a>
+      <a href="resume.html">Resume</a>
+      <a href="portfolio.html">Portfolio</a>
+    </div>
+    <div class="footer-copy">© <span data-year>2026</span> Jiseop Shin</div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/contact-form.js"></script>
+</body>
+</html>
