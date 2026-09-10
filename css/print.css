@@ -18,6 +18,7 @@
   .site-footer,
   .toolbar,
   .doc-footer,
+  .doc-toc,
   .skip-link,
   .nav-drawer { display: none !important; }
 

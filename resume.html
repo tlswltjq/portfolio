@@ -60,6 +60,27 @@
 </div>
 
 <main id="main" tabindex="-1">
+
+  <!-- ── 목차 — 넓은 화면에서 본문 오른쪽 여백에 띄우고, 읽는 위치를 따라갑니다. ── -->
+  <nav class="doc-toc" id="doc-toc" aria-label="목차">
+    <div class="doc-toc-title mono">CONTENTS</div>
+    <ol>
+      <li><a href="#sec-profile">Profile</a></li>
+      <li><a href="#sec-skills">Skills</a></li>
+      <li>
+        <a href="#sec-projects">Projects</a>
+        <ol>
+          <li><a href="#proj-esd">ESD 플랫폼</a></li>
+          <li><a href="#proj-sng">SNG 게임 서버</a></li>
+          <li><a href="#proj-minipay">Mini-pay</a></li>
+          <li><a href="#proj-jobmate">JobMate</a></li>
+          <li><a href="#proj-tafe">수/출입 지원서 관리</a></li>
+        </ol>
+      </li>
+      <li><a href="#sec-education">Education &amp; Activities</a></li>
+    </ol>
+  </nav>
+
   <article class="doc">
 
     <h1>Resume</h1>
@@ -70,10 +91,10 @@
       <span><a href="https://github.com/tlswltjq" target="_blank" rel="noopener">github.com/tlswltjq</a></span>
     </div>
 
-    <h6>Profile</h6>
+    <h6 id="sec-profile">Profile</h6>
     <p class="doc-lead">장애 상황을 테스트로 재현하고, 원인을 찾아 다시 발생하지 않도록 만드는 백엔드 개발자입니다. 결제·지급처럼 되돌리기 어려운 흐름에서 데이터 정합성을 지키는 일을 주로 했습니다. 결함 36건을 재현 가능한 형태로 기록한 뒤 수정하고, 해당 테스트를 유지하는 방식으로 개발합니다.</p>
 
-    <h6>Skills</h6>
+    <h6 id="sec-skills">Skills</h6>
     <table class="table">
       <tbody>
         <tr><td>Language</td><td>Java 21 · Kotlin</td></tr>
@@ -85,7 +106,7 @@
       </tbody>
     </table>
 
-    <h6 class="tight">Projects</h6>
+    <h6 class="tight" id="sec-projects">Projects</h6>
     <div class="doc-list">
 
       <section class="doc-item" id="proj-esd">
@@ -162,7 +183,7 @@
 
     </div>
 
-    <h6 class="tight">Education &amp; Activities</h6>
+    <h6 class="tight" id="sec-education">Education &amp; Activities</h6>
     <table class="table table--edu table--ruled">
       <tbody>
         <tr>
@@ -213,5 +234,6 @@
 
 <script src="js/site.js"></script>
 <script src="js/nav.js"></script>
+<script src="js/toc.js"></script>
 </body>
 </html>

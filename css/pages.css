@@ -88,11 +88,12 @@
   color: var(--color-neutral-700);
 }
 .doc h6 { margin: 44px 0 14px; }
+.doc h6[id] { scroll-margin-top: 88px; }
 .doc h6.tight { margin-bottom: 6px; }
 .doc-lead { font-size: 15px; line-height: 1.8; margin: 0; text-wrap: pretty; }
 
 .doc-list { border-top: 1px solid var(--color-text); }
-.doc-item { padding: 26px 0; border-bottom: 1px solid var(--color-divider); scroll-margin-top: 80px; }
+.doc-item { padding: 26px 0; border-bottom: 1px solid var(--color-divider); scroll-margin-top: 88px; }
 .doc-item-head {
   display: flex;
   align-items: baseline;
@@ -338,4 +339,71 @@
   .doc-item-head { flex-direction: column; gap: 6px; }
   .toolbar { flex-wrap: wrap; gap: var(--space-3); }
   .site-footer .container { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+}
+
+/* ─── 2b. Resume 목차 ─────────────────────────────────────────────── */
+/* 본문(780px)은 그대로 두고, 남는 오른쪽 여백에 띄웁니다. 여백이 모자란
+   화면에서는 아예 감춥니다 — 본문을 좁히면서까지 낄 자리는 아닙니다. */
+.doc-toc { display: none; }
+
+@media (min-width: 1180px) {
+  .doc-toc {
+    display: block;
+    position: fixed;
+    top: 148px;                           /* 도구 띠(sticky) 아래 */
+    left: calc(50% + 424px);              /* 본문 오른쪽 끝(390px) + 34px */
+    width: min(212px, calc(50vw - 440px));
+    max-height: calc(100vh - 196px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 10;
+  }
+}
+
+.doc-toc-title {
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--color-neutral-600);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-text);
+}
+.doc-toc ol { list-style: none; margin: 0; padding: 0; }
+.doc-toc > ol { counter-reset: toc; padding-top: 4px; }
+.doc-toc a {
+  display: block;
+  padding: 5px 0 5px 12px;
+  border-left: 1px solid var(--color-divider);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--color-neutral-700);
+  text-decoration: none;
+  text-wrap: pretty;
+  transition: color 0.15s, border-left-color 0.15s;
+}
+.doc-toc > ol > li > a::before {
+  counter-increment: toc;
+  content: counter(toc, decimal-leading-zero) "  ";
+  font: 400 10.5px var(--font-mono);
+  color: var(--color-neutral-500);
+}
+.doc-toc ol ol a {
+  padding-left: 24px;
+  font-size: 11.8px;
+  color: var(--color-neutral-600);
+}
+.doc-toc a:hover {
+  color: var(--color-accent-800);
+  border-left-color: var(--color-accent-400);
+}
+/* 지금 읽고 있는 항목 — toc.js 가 aria-current 를 옮겨 답니다. */
+.doc-toc a[aria-current] {
+  color: var(--color-accent-800);
+  font-weight: 600;
+  border-left-color: var(--color-accent);
+}
+.doc-toc a[aria-current]::before { color: var(--color-accent); }
+/* 하위 항목이 켜져 있는 동안, 상위 항목도 옅게 짚어 둡니다. */
+.doc-toc > ol > li:has(ol a[aria-current]) > a {
+  color: var(--color-neutral-900);
+  border-left-color: var(--color-neutral-400);
 }
