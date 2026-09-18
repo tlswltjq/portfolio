@@ -9,7 +9,10 @@
    여기서 확실히 눌러 둡니다. */
 [hidden] { display: none !important; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-height) + 20px);
+}
 
 body {
   margin: 0;
@@ -31,6 +34,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body > main { flex: 1 0 auto; }
@@ -177,3 +181,26 @@ body > .container { width: 100%; }
 .hl { color: var(--color-accent-800); font-weight: 600; }
 
 .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* JS가 준비된 경우에만 숨긴 뒤 한 번 나타냅니다. */
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s ease var(--reveal-delay, 0ms),
+    transform 0.55s ease var(--reveal-delay, 0ms);
+}
+.reveal-ready .reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

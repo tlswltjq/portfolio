@@ -20,7 +20,14 @@
   .doc-footer,
   .doc-toc,
   .skip-link,
-  .nav-drawer { display: none !important; }
+  .nav-drawer,
+  .scroll-top { display: none !important; }
+
+  .reveal-ready .reveal,
+  .reveal-ready .reveal.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 
   .doc {
     max-width: none;

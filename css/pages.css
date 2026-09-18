@@ -146,15 +146,15 @@
 
 .project-list {
   padding-top: 34px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 26px;
 }
 .project-card { padding: 32px 34px; }
 .project-card-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-  gap: 44px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
 }
 .project-card h3 { margin: 0; font-size: clamp(24px, 2.8vw, 29px); }
 .project-title-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
@@ -165,10 +165,41 @@
 .project-highlights ul { font-size: 14px; line-height: 1.9; }
 
 .empty-state {
+  grid-column: 1 / -1;
   padding: 40px 0;
   font-size: 14px;
   color: var(--color-neutral-700);
 }
+
+/* GitHub API로 채우는 공개 저장소 그리드 */
+.github-projects { padding-top: var(--section-gap); }
+.github-state-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 38px;
+  margin: 12px 0 18px;
+}
+.github-state { margin: 0; font-size: 12px; color: var(--color-neutral-600); }
+.github-state[data-state="error"] { color: #b65d4c; }
+[data-theme="dark"] .github-state[data-state="error"] { color: #ee9b8d; }
+.github-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.github-card {
+  min-width: 0;
+  padding: 24px;
+  display: grid;
+  grid-template-rows: auto minmax(3.2em, 1fr) auto;
+  gap: 14px;
+}
+.github-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.github-card h3 { min-width: 0; font-size: 21px; overflow-wrap: anywhere; }
+.github-card-description { margin: 0; color: var(--color-neutral-800); font-size: 13.5px; line-height: 1.6; }
+.github-card-meta { display: flex; flex-wrap: wrap; gap: 7px 16px; }
 
 /* ─── 4. Case detail ──────────────────────────────────────────────── */
 .back-link { padding-top: 26px; }
@@ -312,6 +343,8 @@
   .hero .lead, .hero .body-text { max-width: none; }
   .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project-card-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .project-list { grid-template-columns: minmax(0, 1fr); }
+  .github-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .work { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .entry { grid-template-columns: minmax(0, 1fr) 24px; gap: 6px 16px; }
   .entry .mono { grid-column: 1; }
@@ -332,6 +365,7 @@
   .page-head, .contact { padding-top: 48px; }
   .skill-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .project-card { padding: 26px 22px; }
+  .github-grid { grid-template-columns: minmax(0, 1fr); }
   .contact-form { padding: 24px 22px; }
   .case-grid { grid-template-columns: minmax(0, 1fr); gap: 6px 0; }
   .case-label { line-height: 1.6; margin-top: 14px; }

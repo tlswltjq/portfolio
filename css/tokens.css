@@ -5,6 +5,8 @@
    ══════════════════════════════════════════════════════════════════ */
 
 :root {
+  color-scheme: light;
+
   /* ─── 표면과 글자 ─────────────────────────────────────────────── */
   --color-bg: #f2f2f3;          /* 종이(페이지) 바닥 */
   --color-surface: #e9e9ea;     /* 한 단 들어간 면 — 코드칩·해칭 바탕 */
@@ -57,9 +59,42 @@
 
   /* 섹션 사이 수직 리듬 */
   --section-gap: 88px;
+  --header-height: 73px;
 
   --shadow-sm: 0 1px 2px color-mix(in srgb, #2b2b2d 14%, transparent);
   --shadow-md: 0 3px 10px color-mix(in srgb, #2b2b2d 16%, transparent);
+}
+
+/* 다크 모드 변수 — data-theme="dark" 를 문서 루트에 걸면 적용됩니다. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0f1112;
+  --color-surface: #181b1e;
+  --color-text: #eceeef;
+  --color-divider: color-mix(in srgb, #eceeef 18%, transparent);
+
+  --color-neutral-100: #121416;
+  --color-neutral-200: #1c1f22;
+  --color-neutral-300: #292d31;
+  --color-neutral-400: #454b50;
+  --color-neutral-500: #697178;
+  --color-neutral-600: #939ba1;
+  --color-neutral-700: #adb4b9;
+  --color-neutral-800: #cbd0d3;
+  --color-neutral-900: #e6e9eb;
+
+  --color-accent: #82b5df;
+  --color-accent-100: #152431;
+  --color-accent-200: #1b3347;
+  --color-accent-300: #254a68;
+  --color-accent-400: #396b92;
+  --color-accent-500: #568db8;
+  --color-accent-600: #76abd3;
+  --color-accent-700: #96c4e6;
+  --color-accent-800: #bddcf3;
+  --color-accent-900: #e0effa;
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #000 30%, transparent);
+  --shadow-md: 0 6px 20px color-mix(in srgb, #000 30%, transparent);
 }
 
 @media (max-width: 720px) {

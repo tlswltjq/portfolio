@@ -5,14 +5,14 @@
 (function () {
   "use strict";
 
-  var toggles = document.querySelectorAll("[data-disclosure]");
+  const toggles = document.querySelectorAll("[data-disclosure]");
   if (!toggles.length) return;
 
-  Array.prototype.forEach.call(toggles, function (toggle) {
-    var panel = document.getElementById(toggle.getAttribute("aria-controls"));
+  toggles.forEach(function (toggle) {
+    const panel = document.getElementById(toggle.getAttribute("aria-controls"));
     if (!panel) return;
 
-    var mark = toggle.querySelector("[data-disclosure-mark]");
+    const mark = toggle.querySelector("[data-disclosure-mark]");
 
     function setOpen(open) {
       panel.hidden = !open;

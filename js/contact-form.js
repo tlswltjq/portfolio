@@ -7,13 +7,13 @@
 (function () {
   "use strict";
 
-  var form = document.querySelector("[data-contact-form]");
+  const form = document.querySelector("[data-contact-form]");
   if (!form) return;
 
-  var TO = form.getAttribute("data-mailto") || "";
-  var status = form.querySelector("[data-form-status]");
+  const TO = form.getAttribute("data-mailto") || "";
+  const status = form.querySelector("[data-form-status]");
 
-  var fields = [
+  const fields = [
     {
       input: form.querySelector("#c-name"),
       error: form.querySelector("#c-name-error"),
@@ -73,8 +73,8 @@
 
     /* every 로 감싸면 첫 오류에서 멈춰 나머지 칸이 검사되지 않습니다.
        모두 검사한 뒤 결과를 모읍니다. */
-    var results = fields.map(check);
-    var invalid = results.indexOf(false);
+    const results = fields.map(check);
+    const invalid = results.indexOf(false);
 
     if (invalid !== -1) {
       fields[invalid].input.focus();
@@ -82,12 +82,12 @@
       return;
     }
 
-    var name = form.querySelector("#c-name").value.trim();
-    var mail = form.querySelector("#c-mail").value.trim();
-    var body = form.querySelector("#c-msg").value.trim();
+    const name = form.querySelector("#c-name").value.trim();
+    const mail = form.querySelector("#c-mail").value.trim();
+    const body = form.querySelector("#c-msg").value.trim();
 
-    var subject = "[포트폴리오 문의] " + name;
-    var lines = [body, "", "—", "보낸 사람: " + name + " <" + mail + ">"];
+    const subject = "[포트폴리오 문의] " + name;
+    const lines = [body, "", "—", "보낸 사람: " + name + " <" + mail + ">"];
 
     window.location.href =
       "mailto:" + TO +

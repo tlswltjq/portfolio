@@ -5,12 +5,12 @@
 (function () {
   "use strict";
 
-  var toggle = document.querySelector(".nav-toggle");
-  var drawer = document.getElementById("nav-drawer");
+  const toggle = document.querySelector(".nav-toggle");
+  const drawer = document.getElementById("nav-drawer");
   if (!toggle || !drawer) return;
 
-  var iconOpen = toggle.querySelector('[data-icon="open"]');
-  var iconClose = toggle.querySelector('[data-icon="close"]');
+  const iconOpen = toggle.querySelector('[data-icon="open"]');
+  const iconClose = toggle.querySelector('[data-icon="close"]');
 
   function setOpen(open) {
     drawer.hidden = !open;
@@ -49,8 +49,8 @@
 
   /* 넓은 화면으로 돌아가면 서랍은 의미가 없으므로 닫습니다.
      (버튼이 display:none 이 되어 다시 닫을 방법이 사라집니다.) */
-  var wide = window.matchMedia("(min-width: 781px)");
-  var onChange = function (event) {
+  const wide = window.matchMedia("(min-width: 781px)");
+  const onChange = function (event) {
     if (event.matches) setOpen(false);
   };
   if (typeof wide.addEventListener === "function") {

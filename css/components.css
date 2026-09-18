@@ -128,11 +128,14 @@
 
 /* ─── 헤더와 내비게이션 ───────────────────────────────────────────── */
 .site-header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 30;
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-divider);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
+.site-header[data-scrolled] { box-shadow: var(--shadow-sm); }
 .nav {
   display: flex;
   align-items: center;
@@ -178,6 +181,12 @@
 .nav-links .nav-icon:hover { color: var(--color-accent); }
 .nav-links .nav-icon[aria-current="page"] { border-bottom: 0; }
 
+.theme-toggle { flex: none; }
+.theme-toggle svg { pointer-events: none; }
+.theme-toggle .theme-icon-sun { display: none; }
+.theme-toggle[aria-pressed="true"] .theme-icon-moon { display: none; }
+.theme-toggle[aria-pressed="true"] .theme-icon-sun { display: block; }
+
 /* 햄버거 — 좁은 화면에서만 보입니다. */
 .nav-toggle { display: none; }
 
@@ -211,7 +220,7 @@
 /* ─── 얇은 도구 띠 (이력서 상단) ──────────────────────────────────── */
 .toolbar {
   position: sticky;
-  top: 0;
+  top: var(--header-height);
   z-index: 20;
   display: flex;
   align-items: center;
@@ -369,3 +378,29 @@ textarea.input { resize: vertical; min-height: 96px; }
 }
 .footer-links { display: flex; gap: 20px; font-size: 13px; }
 .footer-copy { font: 400 10.5px var(--font-mono); color: var(--color-neutral-600); }
+
+/* 긴 페이지에서만 나타나는 맨 위로 이동 버튼 */
+.scroll-top {
+  position: fixed;
+  right: max(20px, calc((100vw - var(--page-max)) / 2 + 14px));
+  bottom: 24px;
+  z-index: 25;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-bg);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  font: 500 18px/1 var(--font-mono);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.scroll-top:hover { background: var(--color-surface); }
+.scroll-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+@media (max-width: 720px) {
+  .scroll-top { right: 16px; bottom: 16px; }
+}

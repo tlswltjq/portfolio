@@ -6,24 +6,24 @@
 (function () {
   "use strict";
 
-  var group = document.querySelector("[data-filter-group]");
-  var list = document.querySelector("[data-project-list]");
+  const group = document.querySelector("[data-filter-group]");
+  const list = document.querySelector("[data-project-list]");
   if (!group || !list) return;
 
-  var counter = document.querySelector("[data-project-count]");
-  var empty = document.querySelector("[data-empty-state]");
-  var cards = Array.prototype.slice.call(list.querySelectorAll("[data-tags]"));
-  var inputs = Array.prototype.slice.call(group.querySelectorAll("input[data-filter]"));
+  const counter = document.querySelector("[data-project-count]");
+  const empty = document.querySelector("[data-empty-state]");
+  const cards = Array.from(list.querySelectorAll("[data-tags]"));
+  const inputs = Array.from(group.querySelectorAll("input[data-filter]"));
 
   function tagsOf(card) {
     return (card.getAttribute("data-tags") || "").trim().split(/\s+/);
   }
 
   function apply(filter) {
-    var shown = 0;
+    let shown = 0;
 
     cards.forEach(function (card) {
-      var match = filter === "all" || tagsOf(card).indexOf(filter) !== -1;
+      const match = filter === "all" || tagsOf(card).indexOf(filter) !== -1;
       card.hidden = !match;
       if (match) shown += 1;
     });
@@ -37,12 +37,12 @@
   }
 
   group.addEventListener("change", function (event) {
-    var input = event.target;
+    const input = event.target;
     if (!input || !input.hasAttribute("data-filter")) return;
     apply(input.getAttribute("data-filter"));
   });
 
   /* 새로 고침으로 라디오 선택이 복원되는 경우까지 맞춥니다. */
-  var checked = inputs.filter(function (input) { return input.checked; })[0];
+  const checked = inputs.find(function (input) { return input.checked; });
   apply(checked ? checked.getAttribute("data-filter") : "all");
 })();
