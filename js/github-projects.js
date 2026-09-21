@@ -47,48 +47,60 @@
     const fragment = document.createDocumentFragment();
     list.replaceChildren();
 
-    repos.slice(0, LIMIT).forEach(function (repo) {
+    // 1. 화살표 함수 적용
+    // 2. 콜백 함수의 매개변수에서 바로 구조 분해 할당 수행
+    repos.slice(0, LIMIT).forEach(({
+      name,
+      html_url,
+      description,
+      language = "Other", // 3. 기본값(Default value) 할당 적용
+      stargazers_count,
+      updated_at
+    }) => {
       const card = document.createElement("article");
       card.className = "blueprint github-card";
 
-      ["tl", "tr", "bl", "br"].forEach(function (position) {
+      // 4. 짧은 콜백에 화살표 함수 적용
+      ["tl", "tr", "bl", "br"].forEach(position => {
         const corner = document.createElement("i");
-        corner.className = "corner " + position;
+        corner.className = `corner ${position}`; // 템플릿 리터럴도 함께 적용하면 깔끔합니다
         corner.setAttribute("aria-hidden", "true");
         card.appendChild(corner);
       });
 
       const heading = document.createElement("div");
       heading.className = "github-card-head";
-      heading.appendChild(textElement("h3", "", repo.name));
+      heading.appendChild(textElement("h3", "", name)); // 구조 분해된 name 사용
 
       const repositoryLink = document.createElement("a");
       repositoryLink.className = "mono";
-      repositoryLink.href = repo.html_url;
+      repositoryLink.href = html_url; // 구조 분해된 html_url 사용
       repositoryLink.target = "_blank";
       repositoryLink.rel = "noopener";
       repositoryLink.textContent = "repo ↗";
-      repositoryLink.setAttribute("aria-label", repo.name + " GitHub 저장소 열기");
+      repositoryLink.setAttribute("aria-label", `${name} GitHub 저장소 열기`);
       heading.appendChild(repositoryLink);
       card.appendChild(heading);
 
       card.appendChild(textElement(
         "p",
         "github-card-description",
-        repo.description || "설명이 등록되지 않은 공개 저장소입니다."
+        description || "설명이 등록되지 않은 공개 저장소입니다." // 구조 분해된 description 사용
       ));
 
       const meta = document.createElement("div");
       meta.className = "github-card-meta mono";
-      const language = repo.language || "Other";
+      
       const updated = new Intl.DateTimeFormat("ko-KR", {
         year: "numeric",
         month: "2-digit",
         day: "2-digit"
-      }).format(new Date(repo.updated_at));
-      meta.appendChild(textElement("span", "", language));
-      meta.appendChild(textElement("span", "", "★ " + repo.stargazers_count));
-      meta.appendChild(textElement("span", "", "Updated " + updated));
+      }).format(new Date(updated_at)); // 구조 분해된 updated_at 사용
+      
+      meta.appendChild(textElement("span", "", language)); // 구조 분해된 language 사용
+      meta.appendChild(textElement("span", "", `★ ${stargazers_count}`)); // 구조 분해된 stargazers_count 사용
+      meta.appendChild(textElement("span", "", `Updated ${updated}`));
+      
       card.appendChild(meta);
       fragment.appendChild(card);
     });
